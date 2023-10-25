@@ -1,0 +1,50 @@
+#rm(list=ls())
+#library(multisensi)
+isetparam=as.numeric(commandArgs(trailingOnly=TRUE)[1])
+
+## Tuning de l'algo
+niter <- 400
+nburnin <- 200
+M <- 10
+algo.tuning <- list(niter=niter,nburnin=nburnin,M=M)
+
+## Design de l'expérience
+ASdesign_M1=read.table('ASdesign_M1.csv',header=T,sep="\t")
+
+
+## Paramètres du modèle M1
+delta <- 1
+D <- c(1.1,2,3,5,7,10,15,25,50,100,200)
+N <- 100
+
+sigma <- 0.05
+
+esp_lambda <-ASdesign_M1$esp_lambda[isetparam]
+var_lambda <-ASdesign_M1$var_lambda[isetparam]
+mu_lambda <- log(esp_lambda)-0.5*log(1+var_lambda/((esp_lambda)^2))
+sd2_lambda <- log(1+var_lambda/((esp_lambda)^2))
+
+esp_ch <-ASdesign_M1$esp_ch[isetparam]
+var_ch <-ASdesign_M1$var_ch[isetparam]
+mu_ch <- log(esp_ch)-0.5*log(1+var_ch/((esp_ch)^2))
+sd2_ch <- log(1+var_ch/((esp_ch)^2))
+
+# true.param contient les moyennes et variances des Gaussiennes
+true.param <- list(mu_lambda=mu_lambda,mu_ch=mu_ch,sd2_lambda=sd2_lambda,sd2_ch=sd2_ch,sigma=sigma)
+
+nbrep <- 10
+
+source('Sensi.R')
+
+temp<-Sensi(true.param,N,delta,nbrep,D,algo.tuning)
+
+temp.reformat=cbind(matrix(as.vector(unlist(temp$true.param)),ncol=5,nrow=nbrep,byrow=T),temp$biais,temp$stdFIM)
+
+colnames(temp.reformat)=c(names(temp$true.param),paste('bias',names(temp$true.param),sep='_'),paste('std',names(temp$true.param),sep='_'))
+
+temp.reformat=rbind(temp.reformat,colMeans(temp.reformat))
+temp.reformat=as.data.frame(temp.reformat)
+temp.reformat$irep=c(paste('rep',1:nbrep,sep='.'),'average')
+
+
+write.table(temp.reformat,paste('res/sensi_',sprintf("%04d",isetparam),'.tsv',sep=''),row.names=F,sep="\t")

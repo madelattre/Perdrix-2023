@@ -1,0 +1,3962 @@
+qf
+(27519-9964)*0.14
+(27519-9964)*0.14*1.5
+(qf-9964)*0.14*1.5
+(qf-9964)*0.14*1.5-3969
+3969/12
+178.32/0.7
+42.56+33.88+178.32
+42.56+33.88+178.32+60
+315
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.01; m=prop*N;#
+R0=5; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=20000;#
+n_sim=10;#
+tmax=50; ymax=5000;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.01; m=prop*N;#
+R0=5; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=20000;#
+n_sim=10;#
+tmax=50; ymax=5000;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.01; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=20000;#
+n_sim=10;#
+tmax=50; ymax=5000;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.01; m=prop*N;#
+R0=1.5; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=20000;#
+n_sim=10;#
+tmax=50; ymax=5000;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.01; m=prop*N;#
+R0=1.2; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=70; ymax=1000;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.2; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=70; ymax=1000;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.2; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=400;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.2; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=200;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1,type="l",xlab="Time",ylab="Nombre d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.2; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=200;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.2; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+N=10000; prop=0.001; m=prop*N;#
+R0=1.5; TI=3; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.001; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.2;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.005; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.2;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Time",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax,col="blue"),bty="n"}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax,col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax,col="blue"),bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=10000; prop=0.002; m=prop*N;#
+R0=1.2; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.3; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=200; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.7; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.6; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=1000; prop=0.01; m=prop*N;#
+R0=1.6; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=5000; prop=0.01; m=prop*N;#
+R0=1.6; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=3000; prop=0.01; m=prop*N;#
+R0=1.6; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+q()
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.5; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.15;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+x11()
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.12;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+x11()
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.12;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+q()
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+data(biomasseX)
+library(multisensi)
+data(biomasseX)
+data(biomasseY)
+res <- analysis.anoasg(biomasseY, biomasseX,nbcomp = 2, sigma.car = NULL,analysis.args = list(formula = 2,keep.outputs = FALSE))
+res
+head(biomasseX)
+head(biomasseY)
+analysis.anoasg
+analysis.anoasg?
+?
+c
+help(analysis.anoasg)
+res <- analysis.anoasg(biomasseY, biomasseX,nbcomp = 1, sigma.car = NULL,analysis.args = list(formula = 2,keep.outputs = FALSE))
+res
+2816/11
+head(biomasseX)
+head(biomasseY)
+q()
+D = c(1.1,2,3,5,10,15,25)
+CE <- (sqrt(2)+log(1+sqrt(2)))/3#
+CV <- 2/3#
+#
+esp2DM1<-function(D,H,lambda){#
+  return(1/(CE*lambda*1/(sqrt(D)-1)+H))#
+}#
+#
+varmod2DM1<-function(D,H,lambda,delta){#
+  return(1/delta*(CV-CE^2)*(lambda*1/(sqrt(D)-1))^2/(CE*lambda*1/(sqrt(D)-1)+H)^3)#
+}
+esp2DM1(2,0.5,8)
+esp2DM1(2,8,0.5)
+CE <- (sqrt(2)+log(1+sqrt(2)))/3#
+CV <- 2/3#
+#
+esp2DM1<-function(D,H,lambda){#
+  return(1/(CE*lambda*1/(sqrt(D)-1)+H))#
+}#
+#
+varmod2DM1<-function(D,H,lambda,delta){#
+  return(1/delta*(CV-CE^2)*(lambda*1/(sqrt(D)-1))^2/(CE*lambda*1/(sqrt(D)-1)+H)^3)#
+}
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+sigma=0.03#
+cv_lambda=0.25#
+cv_H=0.25#
+ymax=0.3#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=0.5#
+#
+x11()#
+par(mfrow=c(2,3))
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+ymax=2
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+#sigma=0.03#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=0.4#
+#
+sigma=0.1#
+cv_lambda=0.5#
+cv_H=0.5#
+ymax=2
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+library(matrixStats)
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+sigma=0.03#
+cv_lambda=0.25#
+cv_H=0.25#
+ymax=1.5#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2#
+#
+x11()#
+par(mfrow=c(2,3))
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),(sqrt(varmod2DM1(D[i],H,lambda,delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2f - EF, var struct. & résid.",xlab="D")#
+#
+    } else {#
+        lines(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM2=esp2DM1(D,H,lambda)#
+se2DM2=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM2~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM2,D,y2DM2+1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")#
+arrows(D,y2DM2,D,y2DM2-1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3f<-matrix(0, nrow = N, ncol = length(D))#
+#
+for (j in 1:N)#
+{#
+for (i in 1:length(D))#
+{#
+yM3f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sqrt(varmod2DM1(D[i],H,lambda,delta)))#
+}#
+#
+if (j==1) {#
+    plot(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    title(main="M3f - EF, var struct.",xlab="D")#
+#
+} else {#
+    lines(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+}#
+}#
+#
+y2DM3=esp2DM1(D,H,lambda)#
+se2DM3=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM3~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM3,D,y2DM3+1.96*se2DM3,length=0.05,angle=90,col="red")#
+arrows(D,y2DM3,D,y2DM3-1.96*se2DM3,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25) # 50,100,200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100) #200,400#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100,200,400)#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100,200,400)#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+sigma=0.03#
+cv_lambda=0.25#
+cv_H=0.25#
+ymax=1.5#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=0.4#
+#
+#sigma=0.1#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2#
+#
+x11()#
+par(mfrow=c(2,3))
+ymax=2
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+sigma=0.1#
+cv_lambda=0.5#
+cv_H=0.5#
+ymax=2
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+ymax=2.5
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100,200,400)#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+sigma=0.03#
+cv_lambda=0.25#
+cv_H=0.25#
+ymax=2.5#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2.5#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2.5#
+#
+#sigma=0.1#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2.5#
+#
+x11()#
+par(mfrow=c(2,3))
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),(sqrt(varmod2DM1(D[i],H,lambda,delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2f - EF, var struct. & résid.",xlab="D")#
+#
+    } else {#
+        lines(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM2=esp2DM1(D,H,lambda)#
+se2DM2=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM2~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM2,D,y2DM2+1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")#
+arrows(D,y2DM2,D,y2DM2-1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3f<-matrix(0, nrow = N, ncol = length(D))#
+#
+for (j in 1:N)#
+{#
+for (i in 1:length(D))#
+{#
+yM3f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sqrt(varmod2DM1(D[i],H,lambda,delta)))#
+}#
+#
+if (j==1) {#
+    plot(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    title(main="M3f - EF, var struct.",xlab="D")#
+#
+} else {#
+    lines(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+}#
+}#
+#
+y2DM3=esp2DM1(D,H,lambda)#
+se2DM3=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM3~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM3,D,y2DM3+1.96*se2DM3,length=0.05,angle=90,col="red")#
+arrows(D,y2DM3,D,y2DM3-1.96*se2DM3,length=0.05,angle=90,col="red")
+se2DM3
+(sqrt(2)+log(1+sqrt(2)))/3
+(CV-CE^2)
+CV
+CE
+CE^2
+11^3
+64*9/1331
+sqrt(64*9/1331)
+64*9/1331*0.08
+sqrt(64*9/1331*0.08)
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3m=matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM3m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sqrt(varmod2DM1(D[i],H[j],lambda[j],delta)))#
+    }#
+    if (j==1) {#
+        plot(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M3m - EM, var struct.",xlab="D")#
+    } else {#
+        lines(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM3mesp=colMeans(yM3m)#
+yM3mstd=sqrt(colVars(yM3m))#
+#
+lines(yM3mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM3mesp,D,yM3mesp+1.96*yM3mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM3mesp,D,yM3mesp-1.96*yM3mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100,200,400)#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+#sigma=0.03#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2.5#
+#
+sigma=0.03#
+cv_lambda=0.5#
+cv_H=0.5#
+ymax=2.5#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2.5#
+#
+#sigma=0.1#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2.5#
+#
+x11()#
+par(mfrow=c(2,3))
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),(sqrt(varmod2DM1(D[i],H,lambda,delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2f - EF, var struct. & résid.",xlab="D")#
+#
+    } else {#
+        lines(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM2=esp2DM1(D,H,lambda)#
+se2DM2=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM2~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM2,D,y2DM2+1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")#
+arrows(D,y2DM2,D,y2DM2-1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3f<-matrix(0, nrow = N, ncol = length(D))#
+#
+for (j in 1:N)#
+{#
+for (i in 1:length(D))#
+{#
+yM3f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sqrt(varmod2DM1(D[i],H,lambda,delta)))#
+}#
+#
+if (j==1) {#
+    plot(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    title(main="M3f - EF, var struct.",xlab="D")#
+#
+} else {#
+    lines(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+}#
+}#
+#
+y2DM3=esp2DM1(D,H,lambda)#
+se2DM3=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM3~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM3,D,y2DM3+1.96*se2DM3,length=0.05,angle=90,col="red")#
+arrows(D,y2DM3,D,y2DM3-1.96*se2DM3,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3m=matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM3m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sqrt(varmod2DM1(D[i],H[j],lambda[j],delta)))#
+    }#
+    if (j==1) {#
+        plot(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M3m - EM, var struct.",xlab="D")#
+    } else {#
+        lines(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM3mesp=colMeans(yM3m)#
+yM3mstd=sqrt(colVars(yM3m))#
+#
+lines(yM3mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM3mesp,D,yM3mesp+1.96*yM3mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM3mesp,D,yM3mesp-1.96*yM3mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100,200,400)#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+#sigma=0.03#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2.5#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2.5#
+#
+sigma=0.1#
+cv_lambda=0.25#
+cv_H=0.25#
+ymax=2.5#
+#
+#sigma=0.1#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2.5#
+#
+x11()#
+par(mfrow=c(2,3))
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),(sqrt(varmod2DM1(D[i],H,lambda,delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2f - EF, var struct. & résid.",xlab="D")#
+#
+    } else {#
+        lines(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM2=esp2DM1(D,H,lambda)#
+se2DM2=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM2~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM2,D,y2DM2+1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")#
+arrows(D,y2DM2,D,y2DM2-1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3f<-matrix(0, nrow = N, ncol = length(D))#
+#
+for (j in 1:N)#
+{#
+for (i in 1:length(D))#
+{#
+yM3f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sqrt(varmod2DM1(D[i],H,lambda,delta)))#
+}#
+#
+if (j==1) {#
+    plot(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    title(main="M3f - EF, var struct.",xlab="D")#
+#
+} else {#
+    lines(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+}#
+}#
+#
+y2DM3=esp2DM1(D,H,lambda)#
+se2DM3=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM3~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM3,D,y2DM3+1.96*se2DM3,length=0.05,angle=90,col="red")#
+arrows(D,y2DM3,D,y2DM3-1.96*se2DM3,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3m=matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM3m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sqrt(varmod2DM1(D[i],H[j],lambda[j],delta)))#
+    }#
+    if (j==1) {#
+        plot(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M3m - EM, var struct.",xlab="D")#
+    } else {#
+        lines(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM3mesp=colMeans(yM3m)#
+yM3mstd=sqrt(colVars(yM3m))#
+#
+lines(yM3mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM3mesp,D,yM3mesp+1.96*yM3mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM3mesp,D,yM3mesp-1.96*yM3mstd,length=0.05,angle=90,col="red")
+D = c(1.1,2,3,5,10,15,25,50,100,200,400)#
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+#
+#sigma=0.03#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2.5#
+#
+#sigma=0.03#
+#cv_lambda=0.5#
+#cv_H=0.5#
+#ymax=2.5#
+#
+#sigma=0.1#
+#cv_lambda=0.25#
+#cv_H=0.25#
+#ymax=2.5#
+#
+sigma=0.1#
+cv_lambda=0.5#
+cv_H=0.5#
+ymax=2.5#
+#
+x11()#
+par(mfrow=c(2,3))
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1f - EF, var résid.",xlab="D")#
+    } else {#
+        lines(yM1f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM1=esp2DM1(D,H,lambda)#
+#
+lines(y2DM1~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM1,D,y2DM1+1.96*sigma,length=0.05,angle=90,col="red")#
+arrows(D,y2DM1,D,y2DM1-1.96*sigma,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2f<-matrix(0, nrow = N, ncol = length(D))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),(sqrt(varmod2DM1(D[i],H,lambda,delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2f - EF, var struct. & résid.",xlab="D")#
+#
+    } else {#
+        lines(yM2f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+y2DM2=esp2DM1(D,H,lambda)#
+se2DM2=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM2~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM2,D,y2DM2+1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")#
+arrows(D,y2DM2,D,y2DM2-1.96*(se2DM2+sigma),length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3f<-matrix(0, nrow = N, ncol = length(D))#
+#
+for (j in 1:N)#
+{#
+for (i in 1:length(D))#
+{#
+yM3f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sqrt(varmod2DM1(D[i],H,lambda,delta)))#
+}#
+#
+if (j==1) {#
+    plot(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    title(main="M3f - EF, var struct.",xlab="D")#
+#
+} else {#
+    lines(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+}#
+}#
+#
+y2DM3=esp2DM1(D,H,lambda)#
+se2DM3=sqrt(varmod2DM1(D,H,lambda,delta))#
+#
+lines(y2DM3~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,y2DM3,D,y2DM3+1.96*se2DM3,length=0.05,angle=90,col="red")#
+arrows(D,y2DM3,D,y2DM3-1.96*se2DM3,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM1m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM1m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sigma)#
+    }#
+    if (j==1) {#
+        plot(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M1m - EM, var résid.",xlab="D")#
+    } else {#
+        lines(yM1m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM1mesp=colMeans(yM1m)#
+yM1mstd=sqrt(colVars(yM1m))#
+#
+lines(yM1mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM1mesp,D,yM1mesp+1.96*yM1mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM1mesp,D,yM1mesp-1.96*yM1mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM2m<-matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM2m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),(sqrt(varmod2DM1(D[i],H[j],lambda[j],delta))+sigma))#
+    }#
+    if (j==1) {#
+        plot(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M2m - EM, var struct. & résid.",xlab="D")#
+    } else {#
+        lines(yM2m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM2mesp=colMeans(yM2m)#
+yM2mstd=sqrt(colVars(yM2m))#
+#
+lines(yM2mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM2mesp,D,yM2mesp+1.96*yM2mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM2mesp,D,yM2mesp-1.96*yM2mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3m=matrix(0, nrow = N, ncol = length(D))#
+#
+mu_lambda <- lambda#
+sd_lambda <- mu_lambda*cv_lambda#
+logmu_lambda=log(mu_lambda)-log(1+sd_lambda^2/((mu_lambda)^2))/2#
+logsd_lambda=sqrt(log(1+sd_lambda^2/((mu_lambda)^2)))#
+lambda <- exp(rnorm(N,mean=logmu_lambda,sd=logsd_lambda))#
+#
+mu_H <- H#
+sd_H <- mu_H*cv_H#
+logmu_H=log(mu_H)-log(1+sd_H^2/((mu_H)^2))/2#
+logsd_H=sqrt(log(1+sd_H^2/((mu_H)^2)))#
+H <- exp(rnorm(N,mean=logmu_H,sd=logsd_H))#
+for (j in 1:N)#
+{#
+    for (i in 1:length(D))#
+    {#
+        yM3m[j,i]=rnorm(1,esp2DM1(D[i],H[j],lambda[j]),sqrt(varmod2DM1(D[i],H[j],lambda[j],delta)))#
+    }#
+    if (j==1) {#
+        plot(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+        title(main="M3m - EM, var struct.",xlab="D")#
+    } else {#
+        lines(yM3m[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    }#
+}#
+#
+yM3mesp=colMeans(yM3m)#
+yM3mstd=sqrt(colVars(yM3m))#
+#
+lines(yM3mesp~D,type="o",xlim=c(0,50),ylim=c(0,ymax),col="red")#
+arrows(D,yM3mesp,D,yM3mesp+1.96*yM3mstd,length=0.05,angle=90,col="red")#
+arrows(D,yM3mesp,D,yM3mesp-1.96*yM3mstd,length=0.05,angle=90,col="red")
+lambda=8#
+H=0.5#
+delta=1#
+N=100#
+yM3f<-matrix(0, nrow = N, ncol = length(D))#
+#
+for (j in 1:N)#
+{#
+for (i in 1:length(D))#
+{#
+yM3f[j,i]=rnorm(1,esp2DM1(D[i],H,lambda),sqrt(varmod2DM1(D[i],H,lambda,delta)))#
+}#
+#
+if (j==1) {#
+    plot(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+    title(main="M3f - EF, var struct.",xlab="D")#
+#
+} else {#
+    lines(yM3f[j,]~D,ylim=c(0,ymax),size=0.5,col="grey")#
+}#
+}#
+#
+y2DM3=esp2DM1(D,H,lambda)#
+se2DM3=sqrt(varmod2DM1(D,H,lambda,delta))
+se2DM3
+mean(se2DM3)
+q()
+CE <- (sqrt(2)+log(1+sqrt(2)))/3#
+CV <- 2/3#
+#
+esp2DM1<-function(D,H,lambda){#
+  return(1/(CE*lambda*1/(sqrt(D)-1)+H))#
+}#
+#
+varmod2DM1<-function(D,H,lambda,delta){#
+  return(1/delta*(CV-CE^2)*(lambda*1/(sqrt(D)-1))^2/(CE*lambda*1/(sqrt(D)-1)+H)^3)#
+}
+lambda=c(0.1,1,5,10,100)#
+H=0.5#
+delta=1#
+#
+nbrun=length(mu_lambda)#
+#
+D <- c(1.1,1.5,2,2.5,3,4,5,6,7,8,9,10,15,25,50,100)#
+#
+y2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+se2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+#
+for (i in 1:nbrun)#
+{#
+    y2DM1_f[i,]=esp2DM1(D,H,lambda[i])#
+   se2DM1_f[i,]=sqrt(varmod2DM1(D,H,lambda[i],delta))#
+}
+lambda=c(0.1,1,5,10,100)#
+H=0.5#
+delta=1#
+#
+nbrun=length(lambda)#
+#
+D <- c(1.1,1.5,2,2.5,3,4,5,6,7,8,9,10,15,25,50,100)#
+#
+y2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+se2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+#
+for (i in 1:nbrun)#
+{#
+    y2DM1_f[i,]=esp2DM1(D,H,lambda[i])#
+   se2DM1_f[i,]=sqrt(varmod2DM1(D,H,lambda[i],delta))#
+}
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,0.5),col=colors()[1*10],main="lambda")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,3),col=colors()[1*10],main="lambda")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[1*10],main="lambda")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[1*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[1*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[1*10])#
+}
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[1*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[1*10])#
+}
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[1*10],main="lambda")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+#
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+}
+x11()#
+plot(se2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[1*10],main="lambda")#
+#
+for (i in 2:nbrun)#
+{#
+    lines(se2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[i*10])#
+  }
+lambda=c(0.1,1,5,10,100)#
+H=0.5#
+delta=1#
+#
+nbrun=length(lambda)#
+#
+D <- c(1.1,1.5,2,2.5,3,4,5,6,7,8,9,10,15,25,50,100)#
+#
+y2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+se2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+#
+for (i in 1:nbrun)#
+{#
+    y2DM1_f[i,]=esp2DM1(D,H,lambda[i])#
+   se2DM1_f[i,]=sqrt(varmod2DM1(D,H,lambda[i],delta))#
+}#
+#
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[1*10],main="lambda",ylab="Moyenne rép. fonc.")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+#
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+}#
+#
+x11()#
+plot(se2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[1*10],main="lambda",ylab="Ecart-type rép. fonc.")#
+#
+for (i in 2:nbrun)#
+{#
+    lines(se2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[i*10])#
+  }
+lambda=c(0.1,1,5,10,100)#
+H=0.5#
+delta=1#
+#
+nbrun=length(lambda)#
+#
+D <- c(1.1,1.5,2,2.5,3,4,5,6,7,8,9,10,15,25,50,100)#
+#
+y2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+se2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+#
+for (i in 1:nbrun)#
+{#
+    y2DM1_f[i,]=esp2DM1(D,H,lambda[i])#
+   se2DM1_f[i,]=sqrt(varmod2DM1(D,H,lambda[i],delta))#
+}#
+#
+x11()#
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[1*10],main="Analyse sensibilité lambda",ylab="Moyenne rép. fonc.")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+#
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+}#
+#
+x11()#
+plot(se2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[1*10],main="Analyse sensibilité lambda",ylab="Ecart-type rép. fonc.")#
+#
+for (i in 2:nbrun)#
+{#
+    lines(se2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[i*10])#
+  }
+H=c(0.5,1,2,5,10,50)#
+lambda=8#
+delta=1#
+#
+nbrun=length(H)#
+#
+D <- c(1.1,1.5,2,2.5,3,4,5,6,7,8,9,10,15,25,50,100)#
+#
+y2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+se2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+#
+for (i in 1:nbrun)#
+{#
+    y2DM1_f[i,]=esp2DM1(D,H[i],lambda)#
+    se2DM1_f[i,]=sqrt(varmod2DM1(D,H[i],lambda,delta))#
+}#
+#
+x11()#
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[1*10],main="Analyse sensibilité H",ylab="Moyenne rép. fonc.")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+#
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,2),col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+}#
+#
+x11()#
+plot(se2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[1*10],main="Analyse sensibilité H",ylab="Ecart-type rép. fonc.")#
+#
+for (i in 2:nbrun)#
+{#
+    lines(se2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[i*10])#
+}
+H=c(0.5,1,2,5,10,50)#
+lambda=8#
+delta=1#
+#
+nbrun=length(H)#
+#
+D <- c(1.1,1.5,2,2.5,3,4,5,6,7,8,9,10,15,25,50,100)#
+#
+y2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+se2DM1_f<-matrix(0, nrow = nbrun, ncol = length(D))#
+#
+for (i in 1:nbrun)#
+{#
+    y2DM1_f[i,]=esp2DM1(D,H[i],lambda)#
+    se2DM1_f[i,]=sqrt(varmod2DM1(D,H[i],lambda,delta))#
+}#
+#
+x11()#
+plot(y2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,1.5),col=colors()[1*10],main="Analyse sensibilité H",ylab="Moyenne rép. fonc.")#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]+1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+arrows(D,y2DM1_f[1,],D,y2DM1_f[1,]-1.96*se2DM1_f[1,],length=0.05,angle=90,col=colors()[1*10])#
+#
+for (i in 2:nbrun)#
+{#
+    lines(y2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,1.5),col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]+1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+    arrows(D,y2DM1_f[i,],D,y2DM1_f[i,]-1.96*se2DM1_f[i,],length=0.05,angle=90,col=colors()[i*10])#
+}#
+#
+x11()#
+plot(se2DM1_f[1,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[1*10],main="Analyse sensibilité H",ylab="Ecart-type rép. fonc.")#
+#
+for (i in 2:nbrun)#
+{#
+    lines(se2DM1_f[i,]~D,type="o",pch=1,ylim=c(0,0.2),col=colors()[i*10])#
+}
+q()
+library(multisensi)#
+setwd("/Users/evergu/Projets_divers/ANR_2016/ABIM/SimulationsAnalyses/AS_estimation_M1")#
+#
+sensires2=read.table("sensires_2.tsv",header=TRUE)#
+sensires2ave=subset(sensires2,irep=="average")#
+sensires2rep=subset(sensires2,irep!="average")#
+#myvars <- names(sensires2ave) %in% c("mu_lambda","mu_ch","sd2_lambda","sd2_ch")#
+#ASdesignInfM1ave=sensires2ave[myvars]#
+#
+ASdesignM12=expand.grid(esp_lambda=c(1,5,10,20), cv_lambda=c(0.25,0.5,0.75,1), esp_ch=c(0.5,2,5,10), cv_ch=c(0.25,0.5,0.75,1))#
+#
+myvars2 <- names(sensires2ave) %in% c("mu_lambda","mu_ch","sd2_lambda","sd2_ch","sigma","irep")#
+ASoutputInfM1ave=sensires2ave[!myvars2]#
+ASoutputInfM1ave$RMSE_mu_lambda=ASoutputInfM1ave$bias_mu_lambda^2+ASoutputInfM1ave$std_mu_lambda^2#
+ASoutputInfM1ave$RMSE_mu_ch=ASoutputInfM1ave$bias_mu_ch^2+ASoutputInfM1ave$std_mu_ch^2#
+ASoutputInfM1ave$RMSE_sd2_lambda=ASoutputInfM1ave$bias_sd2_lambda^2+ASoutputInfM1ave$std_sd2_lambda^2#
+ASoutputInfM1ave$RMSE_sd2_ch=ASoutputInfM1ave$bias_sd2_ch^2+ASoutputInfM1ave$std_sd2_ch^2#
+res_ASuniv=analysis.anoasg(ASoutputInfM1ave, ASdesignM12, nbcomp = 14, sigma.car = NULL, analysis.args = list(formula = 2, keep.outputs = FALSE))
+resAS=res_ASuniv$SI#
+myvars3 <- names(resAS) %in% c("bias_mu_lambda","bias_mu_ch","bias_sd2_lambda","bias_sd2_ch","bias_sigma")#
+resASbias=resAS[myvars3]
+resASbias
+resAS=res_ASuniv$SI#
+myvars_bias <- names(resAS) %in% c("bias_mu_lambda","bias_mu_ch","bias_sd2_lambda","bias_sd2_ch","bias_sigma")#
+resASbias=resAS[myvars_bias]
+resASbias
+myvars_std <- names(resAS) %in% c("std_mu_lambda","std_mu_ch","std_sd2_lambda","std_sd2_ch","std_sigma")#
+resASstd=resAS[myvars_std]
+resASstd
+myvars_RMSE <- names(resAS) %in% c("RMSE_mu_lambda","RMSE_mu_ch","RMSE_sd2_lambda","RMSE_sd2_ch","RMSE_sigma")#
+resASRMSE=resAS[myvars_RMSE]
+resASRMSE
+resAS
+resAS=res_ASuniv$SI#
+myvars_bias <- names(resAS) %in% c("bias_mu_lambda","bias_mu_ch","bias_sd2_lambda","bias_sd2_ch")#
+resASbias=resAS[myvars_bias]#
+myvars_std <- names(resAS) %in% c("std_mu_lambda","std_mu_ch","std_sd2_lambda","std_sd2_ch")#
+resASstd=resAS[myvars_std]#
+myvars_RMSE <- names(resAS) %in% c("RMSE_mu_lambda","RMSE_mu_ch","RMSE_sd2_lambda","RMSE_sd2_ch")#
+resASRMSE=resAS[myvars_RMSE]
+resASbias
+resASstd
+resASRMSE
+round(resASRMSE,2)
+round(resASRMSE,4)
+round(resASRMSE,3)
+round(resASbias,3)
+round(resASbias,3)
+round(resASstd,3)
+colSums(res_ASuniv$SI)#
+colSums(res_ASuniv$SI[1:4,])
+colSums(res_ASuniv$SI)#
+colSums(res_ASuniv$SI[1:4,])
+colSums(res_ASuniv$SI)
+round(res_ASuniv$SI,3)#
+colSums(res_ASuniv$SI)
+round(res_ASuniv$tSI)#
+round(res_ASuniv$iSI)
+round(res_ASuniv$tSI,3)#
+round(res_ASuniv$iSI,3)
+rouond(resASbias)
+round(resASbias)
+round(resASbias,3)
+round(resASstd,3)
+round(resRMSE,3)
+round(resASRMSE,3)
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_ch"] <- "RMSE_m_H
+""
+""
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_ch"] <- "RMSE_m_H"
+resASRMSE
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_lambda"] <- "RMSE_m_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_ch"] <- "RMSE_m_H#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_lambda"] <- "RMSE_s_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_ch"] <- "RMSE_s_H
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_ch"] <- "RMSE_m_H"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_lambda"] <- "RMSE_s_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_ch"] <- "RMSE_s_H"
+resASRMSE
+round(resASRMSE,3)
+sensires2=read.table("sensires_2.tsv",header=TRUE)#
+sensires2ave=subset(sensires2,irep=="average")#
+sensires2rep=subset(sensires2,irep!="average")#
+#myvars <- names(sensires2ave) %in% c("mu_lambda","mu_ch","sd2_lambda","sd2_ch")#
+#ASdesignInfM1ave=sensires2ave[myvars]#
+#
+ASdesignM12=expand.grid(m_lambda=c(1,5,10,20), cv_lambda=c(0.25,0.5,0.75,1), m_H=c(0.5,2,5,10), cv_H=c(0.25,0.5,0.75,1))#
+#
+myvars2 <- names(sensires2ave) %in% c("mu_lambda","mu_ch","sd2_lambda","sd2_ch","sigma","irep")#
+ASoutputInfM1ave=sensires2ave[!myvars2]#
+ASoutputInfM1ave$RMSE_mu_lambda=ASoutputInfM1ave$bias_mu_lambda^2+ASoutputInfM1ave$std_mu_lambda^2#
+ASoutputInfM1ave$RMSE_mu_ch=ASoutputInfM1ave$bias_mu_ch^2+ASoutputInfM1ave$std_mu_ch^2#
+ASoutputInfM1ave$RMSE_sd2_lambda=ASoutputInfM1ave$bias_sd2_lambda^2+ASoutputInfM1ave$std_sd2_lambda^2#
+ASoutputInfM1ave$RMSE_sd2_ch=ASoutputInfM1ave$bias_sd2_ch^2+ASoutputInfM1ave$std_sd2_ch^2#
+res_ASuniv=analysis.anoasg(ASoutputInfM1ave, ASdesignM12, nbcomp = 14, sigma.car = NULL, analysis.args = list(formula = 2, keep.outputs = FALSE))#
+#
+#"bias_mu_lambda"  "bias_mu_ch"      "bias_sd2_lambda" "bias_sd2_ch"     "bias_sigma"      "std_mu_lambda"   "std_mu_ch"       "std_sd2_lambda"  "std_sd2_ch"      "std_sigma"       "RMSE_mu_lambda"  "RMSE_mu_ch"      "RMSE_sd2_lambda" "RMSE_sd2_ch"#
+resAS=res_ASuniv$SI#
+myvars_bias <- names(resAS) %in% c("bias_mu_lambda","bias_mu_ch","bias_sd2_lambda","bias_sd2_ch")#
+resASbias=resAS[myvars_bias]#
+myvars_std <- names(resAS) %in% c("std_mu_lambda","std_mu_ch","std_sd2_lambda","std_sd2_ch")#
+resASstd=resAS[myvars_std]#
+myvars_RMSE <- names(resAS) %in% c("RMSE_mu_lambda","RMSE_mu_ch","RMSE_sd2_lambda","RMSE_sd2_ch")#
+resASRMSE=resAS[myvars_RMSE]#
+#
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_lambda"] <- "RMSE_m_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_ch"] <- "RMSE_m_H"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_lambda"] <- "RMSE_s_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_ch"] <- "RMSE_s_H"
+resASRMSE
+round(resASRMSE,3)
+names(resASbias)[names(resASbias) == "bias_mu_lambda"] <- "bias_m_lambda"#
+names(resASbias)[names(resASbias) == "bias_mu_ch"] <- "bias_m_H"#
+names(resASbias)[names(resASbias) == "bias_sd2_lambda"] <- "bias_s_lambda"#
+names(resASbias)[names(resASbias) == "bias_sd2_ch"] <- "bias_s_H"#
+round(resASbias,3)
+res_ASuniv=analysis.anoasg(ASoutputInfM1ave, ASdesignM12, nbcomp = 14, sigma.car = NULL, analysis.args = list(formula = 2, keep.outputs = FALSE))#
+#
+#"bias_mu_lambda"  "bias_mu_ch"      "bias_sd2_lambda" "bias_sd2_ch"     "bias_sigma"      "std_mu_lambda"   "std_mu_ch"       "std_sd2_lambda"  "std_sd2_ch"      "std_sigma"       "RMSE_mu_lambda"  "RMSE_mu_ch"      "RMSE_sd2_lambda" "RMSE_sd2_ch"#
+resAS=res_ASuniv$SI#
+myvars_bias <- names(resAS) %in% c("bias_mu_lambda","bias_mu_ch","bias_sd2_lambda","bias_sd2_ch")#
+resASbias=resAS[myvars_bias]#
+myvars_std <- names(resAS) %in% c("std_mu_lambda","std_mu_ch","std_sd2_lambda","std_sd2_ch")#
+resASstd=resAS[myvars_std]#
+myvars_RMSE <- names(resAS) %in% c("RMSE_mu_lambda","RMSE_mu_ch","RMSE_sd2_lambda","RMSE_sd2_ch")#
+resASRMSE=resAS[myvars_RMSE]#
+#
+names(resASbias)[names(resASbias) == "bias_mu_lambda"] <- "bias_m_lambda"#
+names(resASbias)[names(resASbias) == "bias_mu_ch"] <- "bias_m_H"#
+names(resASbias)[names(resASbias) == "bias_sd2_lambda"] <- "bias_s2_lambda"#
+names(resASbias)[names(resASbias) == "bias_sd2_ch"] <- "bias_s2_H"#
+round(resASbias,3)#
+#
+names(resASstd)[names(resASstd) == "std_mu_lambda"] <- "s_m_lambda"#
+names(resASstd)[names(resASstd) == "std_mu_ch"] <- "s_m_H"#
+names(resASstd)[names(resASstd) == "std_sd2_lambda"] <- "s_s2_lambda"#
+names(resASstd)[names(resASstd) == "std_sd2_ch"] <- "s_s2_H"#
+round(resASstd,3)#
+#
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_lambda"] <- "RMSE_m_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_mu_ch"] <- "RMSE_m_H"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_lambda"] <- "RMSE_s2_lambda"#
+names(resASRMSE)[names(resASRMSE) == "RMSE_sd2_ch"] <- "RMSE_s2_H"#
+round(resASRMSE,3)
+rm(list=ls(all=TRUE)) #
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+x11()
+N=2000; prop=0.01; m=prop*N;#
+R0=1.4; TI=5; beta=R0/TI; TI=50; gama=1/TI;#
+n_jump=2*N;#
+n_sim=10;#
+tmax=150; ymax=0.1;#
+S=matrix(0,n_sim,n_jump)#
+I=matrix(0,n_sim,n_jump)#
+R=matrix(0,n_sim,n_jump)#
+T1=matrix(0,n_sim,n_jump)#
+T2=matrix(0,n_sim,n_jump)#
+T3=matrix(0,n_sim,n_jump)#
+for (j in 1:n_sim) {#
+S[j,1]=N-m;#
+I[j,1]=m;#
+i=1;#
+while (S[j,i]>0 & I[j,i]>0) {#
+    i=i+1;#
+	#calculate transition rates#
+    a1=(beta*S[j,i-1]*I[j,i-1])/N#
+    a2=gama*I[j,i-1]#
+	#time of the new event#
+    T1[j,i]=T1[j,i-1]+rexp(1,a1+a2);#
+    u = runif(1,0,1);#
+	#comparison of transition probabilities to the uniform distibution and values update#
+    if (u<a1/(a1+a2)) {#
+        S[j,i]=S[j,i-1]-1#
+        I[j,i]=I[j,i-1]+1#
+        R[j,i]=R[j,i-1]#
+        T2[j,i]=T1[j,i]}#
+    else {#
+        S[j,i]=S[j,i-1]#
+        I[j,i]=I[j,i-1]-1#
+        R[j,i]=R[j,i-1]+1#
+        T3[j,i]=T1[j,i]#
+    }#
+}#
+S1=S[j,T1[j,]>0]#
+I1=I[j,T1[j,]>0]#
+R1=R[j,T1[j,]>0]#
+T11=T1[j,T1[j,]>0]#
+#par(mfrow=c(1,3))#
+if (j==1) {#
+#plot(T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#plot(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+plot(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col="blue",bty="n")}#
+else {#
+#lines (T11,S1,type="l",xlab="Time",ylab="Number of susceptibles",col=2)#
+#lines(T11,I1,type="l",xlab="Time",ylab="Number of infectious",xlim=c(0,tmax),ylim=c(0,ymax),col=3)}#
+lines(T11,I1/N,type="l",xlab="Temps (jours)",ylab="Proportion d'infectieux I(t)",xlim=c(0,tmax),ylim=c(0,ymax),col=colors()[j*10],bty="n")}#
+}
+9631417/3049
+550000/90
+963/55
+3049/90
+3049/95
+550000/95
+5789/3159
+550000/30000
+34839/96
+55000034839
+550000/34839
+551000/34839
+exp(-4)
+nthroot(20, 3)
+library(pracma)
+nthroot(20, 3)
+mean(c(1,2,10))
+mean(c(1,2,100))
+nthroot(200, 3)
+nthroot(2000, 4)
+mean(c(1,2,10,100))
+0,24*0,24+0,09
+0.24^2+0.09
+0.24^2+0.03^2
+0.24^2+0.57^2
+0.24^2
+0.57^2
+0.24+0.03^2
+0.3+0.05^2
+0.3^2+0.05^2
+0.05^2+0.3^2
+0.09^2+0.18^2
+0.03^2+0.24^2
+0.09^2+0.15^2
+0.06^2+0.16^2
+0.08^2+0.14^2
+0.06^2+0.16^2
+0.07^2+0.13^2
+0.05^2+0.11^2
+0.06^2+0.1^2
+0.04^2+0.1^2
+0.05^2+0.1^2
+exit
+q()
