@@ -2,10 +2,12 @@
 
 
 $Y_{ij}$ : réponse fonctionnelle de la $i$e perdrix pour une densité de graines $d_{ij}$
+
 $N$: nombre d'individus
 
 
 1. **Modèle (M1)**
+
 $$
 
 Y_{ij} | \psi_i = (\lambda_i,h_i)\sim \mathcal{N}(m_{ij},s_{ij}^2)
