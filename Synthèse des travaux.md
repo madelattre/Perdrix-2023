@@ -10,7 +10,7 @@ $N$: nombre d'individus
 
 $$
 
-Y_{ij} | \psi_i = (\lambda_i,h_i)\sim \mathcal{N}(m_{ij},s_{ij}^2)
+Y_{ij}/ \psi_i = (\lambda_i,h_i)\sim \mathcal{N}(m_{ij},s_{ij}^2)
 
 $$ 
 
@@ -19,7 +19,7 @@ où $$m_{ij} = \frac{\sqrt{d_{ij}}-1}{C_{2E} \textcolor{blue}{\lambda_i} + \text
 
 2. **Modèle (M2)**
 
-$$Y_{ij} | \psi_i = (\lambda_i,h_i,v_i,pf_i,pv_i)\sim \mathcal{N}(m_{ij},s_{ij}^2)$$
+$$Y_{ij} / \psi_i = (\lambda_i,h_i,v_i,pf_i,pv_i)\sim \mathcal{N}(m_{ij},s_{ij}^2)$$
 
 où $$m_{ij} = \frac{1}{E(T_{ij})} \; , \; s_{ij}^2 = \frac{1}{\Delta} \frac{V(T_{ij})}{E(T_{ij})^3}$$
 
